@@ -1,0 +1,54 @@
+<div class="container-fluid vertically-centered">
+  <div class="row">
+	 </div>
+
+  <div class="row">
+
+    <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+      <div class="logo-container">
+        <img src="./assets/res-pon-dele.png" >
+      </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12 col-xs-12 ">
+      <div class="form">
+
+          <div class="inner-addon right-addon">
+            <i class="glyphicon glyphicon-user"></i>
+            <input type="text" class="form-control" 
+            [(ngModel)]="account.name" 
+            placeholder="Username"/>
+          </div>
+
+          <div class="inner-addon right-addon">
+            <i class="glyphicon glyphicon-lock"></i>
+            <input type="password" class="form-control" [(ngModel)]="account.password" placeholder="Password"/>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 col-xs-12 text-right">
+              <label class="re-checkbox">Remember me
+                <input type="checkbox" checked="checked">
+                <span class="re-checkmark"></span>
+              </label>
+            </div>
+          </div>
+
+          <!--<re-captcha site_key="6Lf2rBwUAAAAAAo3n58ifSSWOq1uYFrqne2JEm2m"></re-captcha>
+          --><button (click)="submit()">login</button>
+
+          <div class="row">
+            <div class="help-links">
+              <div class="col-md-6 col-xs-12">
+                <a routerLink="/registracion">Crea una cuenta</a>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <a routerLink="/recuperar_contrasena">Recuperar contraseña</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>

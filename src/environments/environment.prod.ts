@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  api: 'https://api.respondele.com',
+  socketApi: 'https://api.respondele.com/',
 };

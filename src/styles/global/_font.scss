@@ -1,0 +1,71 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import "./_variables.scss";
+
+/* Customize the label (the container) */
+.re-checkbox {
+  /*display: block;*/
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  font-weight: 100;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.re-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.re-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.re-checkbox:hover input ~ .re-checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.re-checkbox input:checked ~ .re-checkmark {
+  background-color: $main-color;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.re-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.re-checkbox input:checked ~ .re-checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.re-checkbox .re-checkmark:after {
+  left: 8px;
+  top: 4px;
+  width: 5px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

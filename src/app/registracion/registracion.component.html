@@ -1,0 +1,63 @@
+<div class="container-fluid vertically-centered">
+
+  <div class="row">
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6 text-right">
+      <div class="logo-container">
+        <img src="./assets/res-pon-dele.png" >
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form">
+
+        <div class="inner-addon right-addon">
+          <i class="glyphicon glyphicon-user"></i>
+          <input type="text" class="form-control" [(ngModel)]="account.name" placeholder="Username"/>
+        </div>
+
+        <div class="inner-addon right-addon">
+          <i class="glyphicon glyphicon-envelope"></i>
+          <input type="text" [(ngModel)]="account.mail"  placeholder="Email"/>
+        </div>
+
+        <div class="inner-addon right-addon">
+          <i class="glyphicon glyphicon-lock"></i>
+          <input type="password" class="form-control" [(ngModel)]="account.password" placeholder="Password"/>
+        </div>
+
+        <div class="inner-addon right-addon">
+          <i class="glyphicon glyphicon-phone"></i>
+          <input type="text" placeholder="Phone number"/>
+        </div>
+
+        <div class="row font-12">
+          <div class="col-md-7 col-xs-12 text-left">
+            <label class="re-checkbox">Accept Terms of Use
+              <input type="checkbox">
+              <span class="re-checkmark"></span>
+            </label>
+          </div>
+          <div class="col-md-5 col-xs-12 text-left">
+            <label class="re-checkbox">Remember me
+              <input type="checkbox" checked="checked">
+              <span class="re-checkmark"></span>
+            </label>
+          </div>
+        </div>
+
+        <re-captcha site_key="6Lf2rBwUAAAAAAo3n58ifSSWOq1uYFrqne2JEm2m"></re-captcha>
+
+        <button (click)="registrar()">Crear usuario</button>
+
+        <div class="help-links">
+          <p class="message">¿Ya tienes usuario?<a routerLink="/"> Entrar</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

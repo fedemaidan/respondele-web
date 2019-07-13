@@ -1,0 +1,237 @@
+@import "../../styles/global/_variables.scss";
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+.mano {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.envoltura {
+	border: 1px solid #ccc!important;
+	border-radius: 16px!important;
+	padding: 10px;
+	margin-top: 10px;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	text-align: center;
+}
+
+.usuario {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+
+
+/* Chat containers */
+.container .col-left {
+  background-color: $alt-secondary-color;
+}
+
+/* Darker chat container */
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+/* Clear floats */
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images #54d9be */
+.container img {
+    width: 90%;
+    margin-top: 30px;
+}
+
+hr {
+  border: solid 2px $alt-secondary-color;
+  border-radius: 15px;
+  width: 94%;
+  margin-top: 1rem!important;
+}
+
+input[type="text"] {
+  height: 30px;
+}
+
+.form-group {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+@media (min-width: 768px) {
+  label {
+    margin: 5px 15px 0px 43px;
+  }
+}
+
+
+/* Style the right image */
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+    float: left;
+    color: #999;
+}
+
+
+.botonResponder {
+    border-radius: 50px;
+    font-size: 20px;
+    line-height: 2em;
+    text-transform: uppercase;
+    padding: 10px 40px;
+    min-width: 192px;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    background-color: #2691C2;
+    border-color: #2691C2;
+    margin-top: 20px;
+    margin-bottom:  20px;
+}
+
+.botonResponder:hover {
+    background-color: white;
+    color: #2691C2;
+}
+
+
+.texto {
+    font-family: "RobotoThin", sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    line-height: 20px;
+}
+
+
+.content-chat {
+    display: block;
+    width: 100%;
+    max-height: calc(100vh - 375px);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background: #fff;
+
+    & .message {
+        display: flex;
+        margin: 10px 80px 10px 80px;
+        min-height: 30px;
+        height: auto;
+        text-align: left;
+        padding: 10px;
+        border-radius: 25px;
+
+        &.selected {
+          background-color: #e4e4e4;
+        }
+
+        &.me {
+            & img {
+                order: 2;
+                margin: 0 0 0 3px;
+            }
+
+            & div {
+                order: 1;
+                padding: 0 8px 0 0;
+
+                & p {
+                    float: right;
+                }
+
+                &:before {
+                    position: relative;
+                    float: right;
+                    content: '';
+                    margin: 7px -8px 0 0;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 8px 0 8px 8px;
+                    border-color: transparent transparent transparent $secondary-color;
+                }
+            }
+        }
+
+        & img {
+            display: block;
+            order: 1;
+            margin: 0 10px 0 0;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            box-sizing: border-box;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+        }
+
+        & div {
+            display: block;
+            flex: 1;
+            order: 2;
+
+            & p {
+                display: inline-block;
+                margin: 0;
+                width: auto;
+                padding: 8px 10px 8px 10px;
+                background: $secondary-color;
+                word-wrap: break-word;
+                /*font-family: Monospace;*/
+                border-radius: 3px;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
+
+            &:before {
+                position: relative;
+                float: left;
+                content: '';
+                margin: 7px 0 0 -8px;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 8px 8px 8px 0;
+                border-color: transparent $secondary-color transparent transparent;
+            }
+        }
+    }
+}
+
+perfect-scrollbar .ps__rail-y {
+  opacity: 0.6!important;
+}
+
+form.responder .form-group {
+  width: 90%;
+}
+form.responder .form-group textarea {
+  width: 100%;
+}
+form button.btn {
+  border-radius: 20px!important;
+}

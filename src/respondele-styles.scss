@@ -1,0 +1,15 @@
+@import "./styles/global/_variables.scss";
+
+input[type="text"], input[type="password"]  {
+  border: 2px solid $secondary-color;
+  border-radius: 25px;
+  background-color: #fff;
+  height: 12px;
+}
+
+div.vertically-centered {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}

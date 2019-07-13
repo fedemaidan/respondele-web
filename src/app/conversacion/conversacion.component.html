@@ -1,0 +1,128 @@
+<app-navegador></app-navegador>
+<div class="list-group" *ngIf="this.meli.pregunta">
+
+    <div class="container">
+
+      <!-- New Layout -->
+      <div class="row text-center">
+        <div class="col-md-3 col-left">
+          <img class="img-thumbnail .img-responsive" [src]="this.meli.pregunta.item.thumbnail" />
+          <h3 class="">{{ this.meli.pregunta.item.title }}</h3>
+          <p>Codigo de seguimiento</p>
+        </div>
+        <div class="col-md-9">
+
+          <div class="row">
+            <form class="form-inline">
+              <fieldset disabled>
+                <div class="form-group">
+                  <input name="username" class="form-control" placeholder="Username" type="text" value="{{ this.usuarioPregunta }}" />
+                </div>
+                <div class="form-group">
+                  <input name="reputacion" class="form-control" placeholder="Reputación" type="text" />
+                </div>
+                <div class="form-group">
+                  <label for="envio">Envio</label>
+                  <input type="checkbox" class="form-control" id="envio" name="envio" checked>
+                </div>
+                <div class="form-group">
+                  <label for="pago">Pago</label>
+                  <input type="checkbox" class="form-control" id="pago" name="pago">
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="ps" style="position: relative; max-width: 600px; max-height: 400px;" [perfectScrollbar]="config">
+
+            <perfect-scrollbar class="content-chat">
+              <span *ngFor="let pregunta of this.meli.pregunta.preguntas_previas">
+                <div [ngClass]="{
+                  'message': true,
+                  'mano': pregunta.answer == null,
+                  'selected': this.meli.pregunta.question_id == pregunta.id
+                }" (click)="seleccionarPregunta(pregunta.id, pregunta.answer == null )">
+                  <img src="http://api.randomuser.me/portraits/med/men/66.jpg" />
+                  <div><p>{{ pregunta.text }}</p></div>
+                </div>
+                <div class="message me" *ngIf="pregunta.answer">
+                  <img src="http://api.randomuser.me/portraits/med/women/36.jpg" />
+                  <div><p>{{ pregunta.answer.text }}</p></div>
+                </div>
+              </span>
+            </perfect-scrollbar>
+            <form class="form-inline responder" [@preguntaState]="this.meli.pregunta? 'active' : 'inactive'">
+              <div class="form-group">
+                <textarea type="text" name="responder" class="form-control" placeholder="Respondele"  [(ngModel)]="respuesta" (keyup.control.enter)="responder()"></textarea>
+              </div>
+              <button type="submit" class="btn btn-default" (click)="responder()">
+                <span class="glyphicon glyphicon-send"></span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- END New Layout -->
+
+      <!-- Old Layout -->
+      <!--div class="row">
+    		<div class="col-md-2">
+    				<img  [src]="this.meli.pregunta.item.thumbnail" class="img-circle" horizontalAlignment="center"/>
+    			</div>
+    			<div class="col-md-6" (click)="setPregunta(this.meli.pregunta)">
+    				<h3 class="">{{ this.meli.pregunta.item.title }}</h3>
+    			</div>
+
+    			<div class="col-md-4" style="text-align: center;">
+    				<span class="usuario">{{ this.meli.pregunta.seller_name }}</span>
+
+    				<div class="btn-group acciones" role="group" aria-label="..." style="text-align: center;">
+    				  <a type="button" class="btn btn-default" title="Volver" routerLink="/preguntas">
+    				  	<span class="glyphicon glyphicon-menu-left"></span>
+    				  </a>
+    				  <button type="button" class="btn btn-default" title="Ver publicación" (click)="verPublicacion(this.meli.pregunta.item)">
+    				  	<span class="glyphicon glyphicon-modal-window"></span>
+    				  </button>
+    				  <button type="button" class="btn btn-default" title="Ver usuario del cliente" (click)="verUsuario(this.meli.pregunta.from)">
+    				  	<span class="glyphicon glyphicon-user"></span>
+    				  </button>
+    				</div>
+
+    			</div>
+
+    		<div *ngFor="let pregunta of this.meli.pregunta.preguntas_previas" class="pregunta col-md-12">
+    			<div  [ngClass]="(pregunta.answer == null)?'envoltura col-md-8 mano':'envoltura col-md-8'" (click)="seleccionarPregunta(pregunta.id, pregunta.answer == null )">
+    				<div class="col-md-2">
+    					<span class="glyphicon glyphicon-comment icono" style="color: #60CE65"></span>
+    					<span class="time-right">{{dameFechaArgentina(pregunta.date_created)  | date:'dd/MM/yyyy HH:mm:ss' }} </span>
+    				</div>
+    				<div class="col-md-10">
+    					<p class="texto">{{ pregunta.text }}</p>
+    				</div>
+    			</div>
+
+    			<div class="col-md-8 col-md-offset-4 envoltura" *ngIf="pregunta.answer" >
+    				<div class="col-md-9">
+    					<p class="texto">{{ pregunta.answer.text }} </p>
+    				</div>
+    				<div class="col-md-2">
+    					{{dameFechaArgentina(pregunta.answer.date_created)  | date:'dd/MM/yyyy HH:mm:ss' }}
+    				</div>
+    				<div class="col-md-1">
+    					<span class="glyphicon glyphicon-comment icono" style="color: #337AB7"></span>
+    				</div>
+    			</div>
+
+    			<div class="col-md-8 col-md-offset-4 envoltura"  [@preguntaState]="this.meli.pregunta.question_id == pregunta.id ? 'active' : 'inactive'">
+    				<textarea rows="8" class="form-control " [(ngModel)]="respuesta" (keyup.control.enter)="responder()"></textarea>
+    				<button class="btn btn-primary botonResponder col-md-12" (click)="responder()">Responder</button>
+    			</div>
+
+    		</div>
+      </div-->
+      <!-- END Old Layout -->
+
+    </div>
+
+</div>

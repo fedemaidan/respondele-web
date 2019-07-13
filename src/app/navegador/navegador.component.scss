@@ -1,0 +1,152 @@
+/*
+ * Start Bootstrap - Logo Nav (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+@import "../../styles/global/_checkbox.scss";
+@import "../../styles/global/_form.scss";
+
+body {
+    padding-top: 120px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+.navbar-fixed-top .nav {
+    padding: 15px 0;
+}
+
+.nav > li > a, .dropdown > .glyphicon {
+  padding: 5px 5px;
+}
+
+.navbar-fixed-top.navbar-brand {
+    padding: 0 15px;
+}
+
+.inner-addon.right-addon > .glyphicon {
+  font-size: 18px!important;
+}
+
+.inner-addon.right-addon > input[type="text"] {
+  height: 38px!important;
+}
+
+.nav.navbar-nav.navbar-right {
+  position: relative;
+  top: 40px;
+}
+
+.dropdown.open:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 5px;
+    top: 100%;
+    margin-top: 0px;
+    border-width: 0px 12px 12px 12px;
+    border-style: solid;
+    border-color: $secondary-color rgba(0, 0, 0, 0);
+}
+
+.dropdown > ul {
+  margin-top: 12px;
+  background-color: $secondary-color;
+}
+
+.dropdown > ul > li > a {
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  font-weight: bold;
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+
+    .navbar-fixed-top .navbar-brand {
+        padding: 15px 0;
+    }
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: black;
+}
+.navbar-inverse {
+     background-color: #FFFFFF;
+     border-color: #FFFFFF;
+}
+
+.preguntas {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    border-radius: 10px;
+}
+
+.logo {
+    height: 115px;
+    margin-left:40px;
+}
+
+.icon_btn {
+    margin: 0px;
+    background-color: #fff0!important;
+}
+
+.glyphicon {
+    font-size: 25px;
+}
+
+.icon_btn:hover {
+    background-color: white;
+    color: #000000;
+}
+
+.icon_btn:hover span {
+    background-color: white;
+    color: $main-color;
+}
+
+.icon_btn:hover b {
+    color: $main-color;
+}
+
+.icon_btn span, b {
+    color: $secondary-color;
+}
+
+span.badge {
+    position: absolute;
+    top: -3px;
+    right: -5px;
+    color: #FFFFFF!important;
+    background-color: $main-color;
+}
+
+span.badge:hover {
+    color: $main-color!important;
+    background-color: #FFFFFF!important;
+}
+
+
+.titulo {
+    color: white;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    text-shadow: 1px 1px rgba(0,0,0,.72);
+    line-height: 1.2;
+    font-size: 30px;
+}
+
+.boton_colapsador {
+    margin-right: 40px
+}

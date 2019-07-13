@@ -1,0 +1,51 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+
+        <ul class="nav navbar-nav navbar-left">
+          <li>
+            <button type="button" class="navbar-toggle collapsed boton_colapsador" (click)="toggleState()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button> <!-- #1 -->
+               <img class="logo" src="assets/res-pon-dele.png" alt="">
+              <!-- <p class="titulo">MultiML</p> -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="collapse navbar-collapse boton_colapsador"  [ngClass]="{ 'in': isIn }">
+          <ul class="nav navbar-nav navbar-right">
+              <li class="icon_btn">
+                <div class="inner-addon right-addon">
+                  <i class="glyphicon glyphicon-search"></i>
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+              </li>
+
+              <li class="icon_btn">
+                <div class="dropdown">
+                  <span class="glyphicon glyphicon-user" data-toggle="dropdown"></span>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a routerLink="/" (click)="logout()" title="Cerrar sesión">Logout</a></li>
+                    <li><a routerLink="/configuracion" title="Configurar cuentas">Configuration</a></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="icon_btn">
+                  <a routerLink="/preguntas" title="Ver preguntas"><span class="glyphicon glyphicon-comment nav_icon"></span> <span class="badge">{{ this.meli.cantidadPreguntas}}</span>
+                   </a>
+              </li>
+              <li class="icon_btn">
+                  <a routerLink="/preguntas" (click)="sincronizarTodo()" title="Sincronizar todo nuevamente"><span class="glyphicon glyphicon-refresh nav_icon" ></span></a>
+              </li>
+              <li class="icon_btn">
+                  <a routerLink="/faq" title="FAQ"><span class="glyphicon glyphicon-question-sign nav_icon"></span></a>
+              </li>
+          </ul>
+      </div> <!-- #2 -->
+  </div>
+</nav>

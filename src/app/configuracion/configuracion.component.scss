@@ -1,0 +1,103 @@
+@import "../../styles/global/_variables.scss";
+
+.general {
+	margin-top: 105px;
+}
+
+.mano {
+	cursor: pointer; cursor: hand;
+}
+
+.botonRegistrar {
+	border-radius: 50px;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 10px 40px;
+    min-width: 192px;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    background-color: #2691C2;
+    border-color: #2691C2;
+    margin-top: 20px;
+    margin-bottom:  20px;
+    clear: both;
+    overflow: hidden;
+    height: auto;
+}
+
+.botonRegistrar:hover {
+    background-color: white;
+    color: #2691C2;
+}
+
+.botonRemover {
+	border-radius: 50px;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 10px 40px;
+    min-width: 30px;
+    text-align: right;
+    font-weight: 700;
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d9534f;
+    margin-top: 5px;
+    margin-bottom:  5px;
+}
+
+.botonRemover:hover {
+    background-color: white;
+    color: #d9534f;
+}
+
+td {
+	font-size: 20px;
+	margin-top: 5px;
+    margin-bottom:  5px;
+    align-items: center;
+
+}
+
+.shortcut {
+  color: $secondary-color!important;
+  cursor: pointer;
+}
+.shortcut:hover, .shortcut:hover > span {
+  color: $main-color!important;
+  text-decoration: none;
+}
+
+.shortcut span.glyphicon {
+    font-size: 30px;
+    color: $secondary-color;
+    background-color: $alt-secondary-color;
+    padding: 35px;
+    border-radius: 100px;
+}
+.shortcut h4 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.extra-shortcut span.glyphicon {
+    font-size: 26px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 12px;
+    color: red;
+    cursor: pointer;
+}
+.extra-shortcut span.glyphicon.inside:hover {
+  font-size: 20px;
+  color: #ffffff;
+  right: 3px;
+  top: 2px;
+}
+
+.title-help {
+  color: $secondary-color;
+  padding-bottom: 10px;
+}
