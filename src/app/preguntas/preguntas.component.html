@@ -12,16 +12,10 @@
           <!-- Sidebar -->
           <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-              <li>
+              <li *ngFor="let cuenta of this.user.cuentas">
                 <a class="shortcut">
                   <span class="glyphicon glyphicon-user"></span>
-                  <span class="username"> juanmzaragoza</span>
-                </a>
-              </li>
-              <li>
-                <a class="shortcut">
-                  <span class="glyphicon glyphicon-user"></span>
-                  <span class="username"> fmaidan</span>
+                  <span class="username"> {{ cuenta.nickname }}</span>
                 </a>
               </li>
             </ul>
@@ -55,7 +49,7 @@
                 <p class="question-text mano" (click)="verConversacion(pregunta)">{{ pregunta.text }}</p>
                 <div class="btn-group acciones">
                   <button type="button" class="btn btn-default" title="Ver usuario del cliente" (click)="verUsuario(pregunta.from)">
-                    <span class="glyphicon glyphicon-user"> {{ pregunta.from.id }}</span>
+                    <span class="glyphicon glyphicon-user"> {{ pregunta.from.nickname }}</span>
                   </button>
                 </div>
               </div>

@@ -70,7 +70,11 @@ export class PreguntasComponent implements OnInit {
   	window.open(url);
   }
   verConversacion(pregunta) {
+    console.log(pregunta)
     this.meli.setPregunta(pregunta)
+    // .subscribe((pregunta) => {
+    //   
+    // })
     this.router.navigate(["/conversacion"])
   }
 

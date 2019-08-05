@@ -24,17 +24,10 @@
                   <input type="text" class="form-control" placeholder="Search">
                 </div>
               </li>
-
-              <li class="icon_btn">
-                <div class="dropdown">
-                  <span class="glyphicon glyphicon-user" data-toggle="dropdown"></span>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a routerLink="/" (click)="logout()" title="Cerrar sesión">Logout</a></li>
-                    <li><a routerLink="/configuracion" title="Configurar cuentas">Configuration</a></li>
-                  </ul>
-                </div>
+               <li class="icon_btn">
+                  <a routerLink="/configuracion" title="Configurar cuentas"><span class="glyphicon glyphicon-user nav_icon"></span>
+                   </a>
               </li>
-
               <li class="icon_btn">
                   <a routerLink="/preguntas" title="Ver preguntas"><span class="glyphicon glyphicon-comment nav_icon"></span> <span class="badge">{{ this.meli.cantidadPreguntas}}</span>
                    </a>
@@ -44,6 +37,9 @@
               </li>
               <li class="icon_btn">
                   <a routerLink="/faq" title="FAQ"><span class="glyphicon glyphicon-question-sign nav_icon"></span></a>
+              </li>
+              <li class="icon_btn">
+                  <a title="Logout" (click)="logout()"><span class="glyphicon glyphicon-log-out nav_icon"></span></a>
               </li>
           </ul>
       </div> <!-- #2 -->

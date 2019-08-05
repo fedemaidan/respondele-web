@@ -5,12 +5,11 @@
 
       <!-- New Layout -->
       <div class="row text-center">
-        <div class="col-md-3 col-left">
-          <img class="img-thumbnail .img-responsive" [src]="this.meli.pregunta.item.thumbnail" />
-          <h3 class="">{{ this.meli.pregunta.item.title }}</h3>
-          <p>Codigo de seguimiento</p>
+        <div class="col-md-5 col-left">
+          <app-publicacion></app-publicacion>
         </div>
-        <div class="col-md-9">
+
+        <div class="col-md-7">
 
           <div class="row">
             <form class="form-inline">
@@ -21,14 +20,6 @@
                 <div class="form-group">
                   <input name="reputacion" class="form-control" placeholder="Reputación" type="text" />
                 </div>
-                <div class="form-group">
-                  <label for="envio">Envio</label>
-                  <input type="checkbox" class="form-control" id="envio" name="envio" checked>
-                </div>
-                <div class="form-group">
-                  <label for="pago">Pago</label>
-                  <input type="checkbox" class="form-control" id="pago" name="pago">
-                </div>
               </fieldset>
             </form>
           </div>
@@ -37,20 +28,20 @@
             <div class="ps" style="position: relative; max-width: 600px; max-height: 400px;" [perfectScrollbar]="config">
 
             <perfect-scrollbar class="content-chat">
-              <span *ngFor="let pregunta of this.meli.pregunta.preguntas_previas">
+              <div  *ngFor="let pregunta of this.meli.pregunta.preguntas_previas">
+              <span>
                 <div [ngClass]="{
                   'message': true,
                   'mano': pregunta.answer == null,
                   'selected': this.meli.pregunta.question_id == pregunta.id
                 }" (click)="seleccionarPregunta(pregunta.id, pregunta.answer == null )">
-                  <img src="http://api.randomuser.me/portraits/med/men/66.jpg" />
                   <div><p>{{ pregunta.text }}</p></div>
                 </div>
                 <div class="message me" *ngIf="pregunta.answer">
-                  <img src="http://api.randomuser.me/portraits/med/women/36.jpg" />
                   <div><p>{{ pregunta.answer.text }}</p></div>
                 </div>
               </span>
+            </div>
             </perfect-scrollbar>
             <form class="form-inline responder" [@preguntaState]="this.meli.pregunta? 'active' : 'inactive'">
               <div class="form-group">

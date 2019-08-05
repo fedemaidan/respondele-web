@@ -152,7 +152,6 @@ export class MercadolibreService {
           return pregunta.question_id == question_id
         } 
       )
-
     this.setPregunta(pregunta[0])
   }
 

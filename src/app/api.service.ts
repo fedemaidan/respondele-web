@@ -29,7 +29,7 @@ export class ApiService {
 		if (params) {
 			p = "?"
 		  for(let k in params) {
-		    p += k+"="+params[k]
+		    p += "&"+k+"="+params[k]
 		  }
 		}
 

@@ -49,7 +49,6 @@ respuesta: string
           console.log(err)
       });
 
-      console.log(this.meli.pregunta.preguntas_previas)
     }
   }
 
