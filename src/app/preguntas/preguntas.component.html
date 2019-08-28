@@ -1,5 +1,6 @@
 <app-navegador></app-navegador>
-<div class="list-group">
+<app-spinner *ngIf="this.meli.loading" message="Buscando consultas..."></app-spinner>
+<div class="list-group" *ngIf="!this.meli.loading">
   <div class="container-fluid">
 
     <div class="row">

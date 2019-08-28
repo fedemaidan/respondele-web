@@ -18,17 +18,23 @@ export class MercadolibreService {
   pregunta: Pregunta
   cantidadPreguntas = null
   socketOn = false
+  loading: boolean;
 
   constructor(public http: HttpClient
   	, public api: ApiService
   	, public user: UserService)
-   { 
-
+   {
+     this.preguntas = []
+     this.loading = true;
+     if (this.user.hasUser()) {
+        this.user.init();
+        this.actualizarPreguntas(true)
+     }
   }
 
   urlIniML(params: any) {
     var accountInfo = this.user.cargarHeadersAutorizations(null)
-    let seq = this.api.get(this.user.getApi(),'iniciarConML', params, accountInfo);
+    let seq = this.api.get(this.user.getApi(),'cuentas/iniciarConML', params, accountInfo);
     return seq;
   }
 
@@ -39,7 +45,7 @@ export class MercadolibreService {
   removerCuentaML(body: any) {
     var headers = this.user.cargarHeadersAutorizations(body)
     
-    let seq = this.api.post(this.user.getApi(),'removerUsuarioML', body, headers);
+    let seq = this.api.delete(this.user.getApi(),'cuentas/cuentas', body.nickname , headers);
 
     seq.subscribe((res: {success}) => {
         if(res.success == true) {
@@ -54,30 +60,20 @@ export class MercadolibreService {
   }
   
   
-  responderPregunta( accountInfo: any) {
-    accountInfo = this.user.cargarHeadersAutorizations(accountInfo)
-    let seq = this.api.post(this.user.getApi(),'responder', {},accountInfo);
-
-    seq.subscribe((res: {success}) => {
-        if(res.success == true) {
-          this.removerPregunta()
-        } else {
-        }
-      }, err => {
-        console.error('ERROR', err);
-      });
-
+  responderPregunta( datos: any) {
+    let accountInfo = this.user.cargarHeadersAutorizations({})
+    let seq = this.api.post(this.user.getApi(),'preguntas/responder', datos,accountInfo);
     return seq;
   }
 
   sincronizarPreguntas( body: any) {
     var headers = this.user.cargarHeadersAutorizations({})
 
-    let seq = this.api.post(this.user.getApi(),'sincronizarNuevamentePreguntas', body, headers);
-
-    seq.subscribe((res: {success}) => {
+    let seq = this.api.post(this.user.getApi(),'preguntas/sincronizar', body, headers);
+    this.loading = true;
+    seq.subscribe((res: {success, data}) => {
         if(res.success == true) {
-          this.actualizarPreguntas({})
+          this.setPreguntas(res.data)
         } else {
           console.log(res)
         }
@@ -164,7 +160,7 @@ export class MercadolibreService {
    //   this.actualizarPreguntas({})
    // }
 
-   actualizarPreguntas(accountInfo: any) {
+   actualizarPreguntas(showLoading: boolean) {
     
 /*    if (!this.socketOn) {
         this.user.socket.on('actualizar', (mensaje) => {
@@ -172,27 +168,15 @@ export class MercadolibreService {
       })
     }*/
 
-    accountInfo = this.user.cargarHeadersAutorizations({})
+    let accountInfo = this.user.cargarHeadersAutorizations({})
     
-    let seq = this.api.get(this.user.getApi(),'preguntas',{},  accountInfo);
-
+    let seq = this.api.get(this.user.getApi(),'preguntas/pregunta',{},  accountInfo);
+    if (showLoading && this.preguntas.length == 0)
+      this.loading = true;
     seq.subscribe((res: {success, data, msg}) => {
         
         if(res.success == true) {
-
-          this.preguntas = <Pregunta[]>res.data
-          if (this.preguntas) {
-            this.preguntas.forEach( (pregunta) => {
-              this.actualizarConveracionCon(pregunta)
-              pregunta.seller_name = this.user.dameNickname(pregunta.seller_id)
-
-            })
-            this.cantidadPreguntas = this.preguntas.length
-          }
-          
-          
-         
-          
+          this.setPreguntas(res.data)
         } else {
           console.error('ERROR ACTUALIZANDO PREGUNTAS', res);
           return res.msg
@@ -203,5 +187,18 @@ export class MercadolibreService {
       });
 
     return seq;
+  }
+
+  setPreguntas(preguntas) {
+    this.preguntas = <Pregunta[]>preguntas
+    this.loading = false;
+    if (this.preguntas) {
+      this.preguntas.forEach( (pregunta) => {
+        this.actualizarConveracionCon(pregunta)
+        pregunta.seller_name = this.user.dameNickname(pregunta.seller_id)
+
+      })
+      this.cantidadPreguntas = this.preguntas.length
+    }
   }
 }

@@ -49,7 +49,7 @@ export class PreguntasComponent implements OnInit {
     }
 
     this.isLoading = true
-  	this.meli.actualizarPreguntas({})
+  	this.meli.actualizarPreguntas(false)
       .subscribe(res => {
           this.isLoading = false
         });

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from "@angular/router";
 import { ViewChild } from '@angular/core';
+import { MercadolibreService } from '../mercadolibre.service';
 //import { ReCaptchaComponent } from 'angular2-recaptcha';
 
 @Component({
@@ -19,13 +20,15 @@ export class LoginComponent implements OnInit {
   	};
 
   	constructor(
-  		private user: UserService,
+		  private user: UserService,
+		  private meli: MercadolibreService,
   		private router: Router
   		) { }
 
   	ngOnInit() {
-  		if(this.user._user) {
-	      	this.router.navigate(["/preguntas"])
+  		if(this.user.hasUser()) {
+			console.log("aaaaa pepito es un lquito")
+			this.router.navigate(["/preguntas"])
 	    }
   	}
 

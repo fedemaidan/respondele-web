@@ -1,9 +1,11 @@
 <app-navegador></app-navegador>
-<div class="general">
+<app-spinner *ngIf="this.user.loading" message="Inicializando datos..."></app-spinner>
+<div class="general" *ngIf="!this.user.loading">
   <div class="container">
 
-    <div class="row">
-    </div>
+    <!-- <div class="row">
+      
+    </div> -->
 
     <div class="row text-center" *ngIf="this.user.cantidadDeCuentas() == 0">
       <div class="col-md-12 col-sm-12">

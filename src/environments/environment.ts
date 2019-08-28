@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:88',
-  socketApi: 'http://localhost:88/',
+  api: 'http://localhost:5001/notiml/us-central1',
+  socketApi: 'http://localhost:5001/notiml/us-central1/disabled/',
 };

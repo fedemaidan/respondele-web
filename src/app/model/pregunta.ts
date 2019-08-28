@@ -3,7 +3,7 @@ export interface Pregunta {
   date_created: string
   question_id: string
   item_id: string
-  item: Object
+  item: any
   status: string
   text: string
   deleted_from_listing: string

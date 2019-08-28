@@ -3,6 +3,7 @@ import { MercadolibreService } from '../mercadolibre.service';
 import { UserService } from '../user.service';
 import { Router } from "@angular/router";
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-conversacion',
@@ -24,14 +25,18 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class ConversacionComponent implements OnInit {
 
-respuesta: string
+  respuesta: string
   isLoading: boolean
   usuarioPregunta: string
+  enviarPrefijo: boolean
+  enviarSufijo: boolean
+  prefijo: string
+  sufijo: string
 
   constructor(public user: UserService,
               public meli: MercadolibreService,
-              private router: Router) {
-  }
+              private router: Router,
+              public notifier: NotifierService) { }
 
   ngOnInit() {
     if(!this.user.token)
@@ -43,8 +48,12 @@ respuesta: string
       this.isLoading = false
 
       this.meli.dameNombreUsuario(this.meli.pregunta.from)
-      .subscribe((respuesta: {nickname}) => {
+      .subscribe((respuesta: { nickname }) => {
          this.usuarioPregunta = respuesta.nickname
+         this.prefijo = `Hola ${this.usuarioPregunta}.`
+         this.sufijo = " // Podes realizar la compra mediante Mercado Libre o mediante ------ @youtec.arg ------- InstG -----  tambien por nuestra Web Youtec /// Abonando por Transferencia Bancaria te podemos BONIFICAR 5% y Efec. 10% // Muchas gracias! - Somos @youtec.arg"
+         this.enviarPrefijo = true
+         this.enviarSufijo = true
       }, (err) => {
           console.log(err)
       });
@@ -53,6 +62,13 @@ respuesta: string
   }
 
   responder() {
+    
+    if (this.enviarPrefijo)
+      this.respuesta = `${this.prefijo} ${this.respuesta}`
+    if (this.enviarSufijo)
+      this.respuesta = `${this.respuesta} ${this.sufijo}`
+
+    this.notifier.notify( 'info' , "Enviando .. " );
     this.meli.responderPregunta( {
                                     user_id_ml: this.meli.pregunta.seller_id,
                                     question_id: this.meli.pregunta.question_id,
@@ -61,9 +77,10 @@ respuesta: string
     .subscribe((respuesta) => {
        this.respuesta = ""
        this.meli.removerPregunta()
+       this.notifier.notify( 'success' , respuesta["msg"] );
        this.router.navigate(["/preguntas"])
     }, (err) => {
-      	console.log(err)
+      this.notifier.notify( 'error' , err );
     });
   }
 

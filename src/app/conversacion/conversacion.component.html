@@ -25,7 +25,7 @@
           </div>
           <hr />
           <div class="row">
-            <div class="ps" style="position: relative; max-width: 600px; max-height: 400px;" [perfectScrollbar]="config">
+            <div class="ps" style="position: relative; max-width: 600px; max-height: 400px;" >
 
             <perfect-scrollbar class="content-chat">
               <div  *ngFor="let pregunta of this.meli.pregunta.preguntas_previas">
@@ -45,11 +45,15 @@
             </perfect-scrollbar>
             <form class="form-inline responder" [@preguntaState]="this.meli.pregunta? 'active' : 'inactive'">
               <div class="form-group">
-                <textarea type="text" name="responder" class="form-control" placeholder="Respondele"  [(ngModel)]="respuesta" (keyup.control.enter)="responder()"></textarea>
+                <textarea type="text" name="responder" class="form-control" placeholder="Respondele .. "  [(ngModel)]="respuesta" (keyup.control.enter)="responder()"></textarea>
               </div>
               <button type="submit" class="btn btn-default" (click)="responder()">
                 <span class="glyphicon glyphicon-send"></span>
               </button>
+              <div class="btn-group" role="group">
+                <button type="button" [ngClass]="this.enviarPrefijo ? 'btn buttonSelected':'btn btn-default'" (click)="this.enviarPrefijo = !this.enviarPrefijo" [(title)]="this.prefijo">Prefijo</button>
+                <button type="button" [ngClass]="this.enviarSufijo ? 'btn buttonSelected':'btn btn-default'" (click)="this.enviarSufijo = !this.enviarSufijo" [(title)]="this.sufijo">Sufijo</button>
+              </div>
             </form>
           </div>
         </div>

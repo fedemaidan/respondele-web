@@ -21,6 +21,7 @@ export class ConfiguracionComponent implements OnInit {
     var accountInfo = { user: this.user._user}
 
     this.meli.urlIniML(accountInfo).subscribe((data: {url}) => {
+      console.log(data)
             this.url = data.url
           });
 
@@ -35,8 +36,8 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   agregarCuenta() {
-
     window.location.replace(this.url);
+    console.log("aaaa")
   }
 
   removerCuenta(cuenta) {

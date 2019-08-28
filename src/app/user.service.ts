@@ -14,17 +14,26 @@ export class UserService {
 
   url: string = environment.api;
   urlSocket: string = environment.socketApi;
-
+  loading: boolean;
   public cuentas: Cuenta[]
 
   constructor(public http: HttpClient, 
               public api: ApiService
-              ) {
+              ) {}
 
+  init() {
+    this.loading = true;
     if (localStorage.getItem('_user')) {
       this.cargarUsuario(localStorage.getItem('_user'), localStorage.getItem('token'))
     }
-    
+    if (localStorage.getItem('cuentas')) {
+      this.cuentas = JSON.parse(localStorage.getItem("cuentas"));
+      this.loading = false;
+    }
+  }
+
+  hasUser() {
+    return localStorage.getItem('_user');
   }
 
   dameNickname(id) {
@@ -40,6 +49,7 @@ export class UserService {
   }
 
   cargarUsuario(user, token) {
+    this.loading = true;
     this._user = user
     this.token = token
     this.actualizarCuentas({})
@@ -61,11 +71,11 @@ export class UserService {
 
   login(accountInfo: any) {
     accountInfo = this.cargarHeadersAutorizations(accountInfo)
-    let obs = this.api.post(this.url, 'authenticate_web', accountInfo)
+    let obs = this.api.post(this.url, 'login/authenticate_web', accountInfo)
     obs.subscribe((res: {success,token }) => {
         if(res.success == true) {
           var self = this
-          console.log("MI usuario loco")
+          this.loading = true;
           self.cargarUsuario(accountInfo.name, res.token)
         }
         else {
@@ -78,12 +88,12 @@ export class UserService {
 
   recuperarContrasena(accountInfo: any) {
     accountInfo = this.cargarHeadersAutorizations(accountInfo)
-    return this.api.post(this.url, 'recuperarContrasena', accountInfo);
+    return this.api.post(this.url, 'login/recuperarContrasena', accountInfo);
   }
 
   signup(accountInfo: any) {
     accountInfo = this.cargarHeadersAutorizations(accountInfo)
-    let seq = this.api.post(this.url,'signup', accountInfo)
+    let seq = this.api.post(this.url,'login/signup', accountInfo)
     seq.subscribe((res: { status }) => {
         if(res.status == 'success') {
           this.login(accountInfo)
@@ -97,17 +107,13 @@ export class UserService {
 
   actualizarCuentas(accountInfo: any) {
     accountInfo = this.cargarHeadersAutorizations(accountInfo)
-    console.log(accountInfo)
-    let seq = this.api.get(this.url,'cuentas',{},  accountInfo)
+    let seq = this.api.get(this.url,'cuentas/cuentas',{},  accountInfo)
     seq.subscribe((res: {success, data, msg}) => {
         
         if(res.success == true) {
           this.cuentas = <Cuenta[]>res.data
-          console.log(this.cuentas)
-/*           this.socket.on('actualizarCuentas', (resource) => {
-             this.actualizarCuentas(resource);
-           })
-*/
+          localStorage.setItem('cuentas', JSON.stringify(this.cuentas));
+          this.loading = false;
         } else {
           console.error('ERROR ACTUALIZANDO CUENTAS', res);
           return res.msg

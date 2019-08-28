@@ -21,6 +21,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { PublicacionComponent } from './publicacion/publicacion.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NotifierModule } from 'angular-notifier';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -38,6 +40,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ConfiguracionComponent,
     ConversacionComponent,
     PublicacionComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    NotifierModule
   ],
   providers: [UserService, ApiService, MercadolibreService, {
       provide: PERFECT_SCROLLBAR_CONFIG,

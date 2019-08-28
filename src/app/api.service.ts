@@ -44,8 +44,8 @@ export class ApiService {
     return this.http.put(url + '/' + endpoint, body);
   }
 
-  delete(url: string , endpoint: string, body: any) {
-    return this.http.post(url + '/' + endpoint, body);
+  delete(url: string , endpoint: string, value: any, headers?:any) {
+    return this.http.delete(`${url}/${endpoint}/${value}`);
   }
 
   patch(url: string , endpoint: string, body: any) {
